@@ -1,0 +1,12 @@
+
+
+./scripts/1-build-generator.sh
+
+docker compose up -d --build
+
+docker exec -e KAFKA_BOOTSTRAP=broker:9092 python python /workspace/producer.py
+
+./scripts/2-register-pipeline.sh
+
+
+python3 test_variant_tables.py
